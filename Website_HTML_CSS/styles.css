@@ -21,10 +21,12 @@
 
     }
     .aslika{
+        display: block;
         padding: 0px;
         margin: 0px;
         float : left;
         size-adjust: 0px;
+        flex : 0;
     }
     nav ul li a:hover {
         background-color: #111;
