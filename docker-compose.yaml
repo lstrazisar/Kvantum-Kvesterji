@@ -1,0 +1,22 @@
+services:
+  ## DATABASES
+  # POSTGRES
+  postgresDB:
+    image: dragonhack/postgres-db
+    container_name: dragonhack-postgresDB
+    build:
+      context: .
+      dockerfile: Postgres/docker/Dockerfile
+    ports:
+      - 5435:5432
+    volumes:
+      - ./Postgres/Data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=WeWantMoreCars # admin password
+      - POSTGRES_USER=postgres # admin user
+      - PG_UNAME=dragon
+      - PG_PASS=WeWantMoreCars
+      - PG_DB=avtonet
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
