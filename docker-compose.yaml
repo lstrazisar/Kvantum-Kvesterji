@@ -12,11 +12,11 @@ services:
     volumes:
       - ./postgres/Data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=WeWantMoreCars # admin password
-      - POSTGRES_USER=postgres # admin user
-      - PG_UNAME=dragon
-      - PG_PASS=WeWantMoreCars
-      - PG_DB=avtonet
+      - POSTGRES_PASSWORD=${DB_ADMIN_PASSWORD} # admin password
+      - POSTGRES_USER=${DB_ADMIN_USERNAME} # admin user
+      - PG_UNAME=${DB_USERNAME} # user
+      - PG_PASS=${DB_PASSWORD} # password
+      - PG_DB=${DB_DATABASE} # database name
 
     extra_hosts:
       - "host.docker.internal:host-gateway"
