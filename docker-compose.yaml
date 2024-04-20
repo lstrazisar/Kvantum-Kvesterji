@@ -6,11 +6,11 @@ services:
     container_name: dragonhack-postgresDB
     build:
       context: .
-      dockerfile: Postgres/docker/Dockerfile
+      dockerfile: postgres/docker/Dockerfile
     ports:
       - 5435:5432
     volumes:
-      - ./Postgres/Data:/var/lib/postgresql/data
+      - ./postgres/Data:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=WeWantMoreCars # admin password
       - POSTGRES_USER=postgres # admin user
@@ -18,5 +18,18 @@ services:
       - PG_PASS=WeWantMoreCars
       - PG_DB=avtonet
 
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mailing-service:
+    image: dragonhack/mailing-service
+    container_name: mailing-service
+    restart: always
+    build:
+      context: .
+      dockerfile: ./mailing/docker/Dockerfile
+    ports:
+      - 8000:8000 # gmail server port for authentication
+      - 8080:8080
     extra_hosts:
       - "host.docker.internal:host-gateway"
