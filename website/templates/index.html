@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Website</title>
+    </head>
+    <body>
+        <h1>Website</h1>
+        <p>Welcome to the website! {{content}}</p>
+        <h2>{{djdjds}}</h2>
+        {% for i in range(3) %}
+            {% if i % 2 == 0 %}
+               <p>{{ badboy[i] }}</p> 
+            {% endif %}
+        {% endfor %}
+        <form action="/about" method="post">
+            <input type="text" name="name" placeholder="Name">
+            <input type="email" name="email" placeholder="Email">
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
