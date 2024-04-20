@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../styles.css">
+    <title>DealHunter</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body class="avtonet">
     <nav> 
         <ul>
             <li><a  class="aslika" href =../index.html><img src="../Logo.png" alt="DealHunter"></a></li>
@@ -14,6 +14,49 @@
             <li class="navright"><a href="neprimicnine.html">Neprimincnine</a></li>
         </ul>
     </nav>
-    <h1>Hello World</h1>
+    <div class="preference_selection">
+        <h3>Please fill this form to get notified:</h3>
+        <!-- <label for="email">Email:</label> -->
+        <div class="email_request">
+            <input type="text" id="email" placeholder="Your email goes here">
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Znamka avtomobila</button>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Model avtomobila</button>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Gorivo</button>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="kilometer_input">
+            <label for="kilometers_range">Prevoženi kilometri:</label>
+            <input type="text" id="kilometers_range_start" placeholder="od:">
+            <input type="text" id="kilometers_range_end" placeholder="do:">
+        </div>
+        <div class="price_input">
+            <label for="price_range">Cena:</label>
+            <input type="text" id="price_range_start" placeholder="od:">
+            <input type="text" id="price_range_end" placeholder="do:">
+        </div>
+        
+    </div>
+    
+
 </body>
 </html>
