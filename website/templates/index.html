@@ -1,20 +1,25 @@
-<html>
-    <head>
-        <title>Website</title>
-    </head>
-    <body>
-        <h1>Website</h1>
-        <p>Welcome to the website! {{content}}</p>
-        <h2>{{djdjds}}</h2>
-        {% for i in range(3) %}
-            {% if i % 2 == 0 %}
-               <p>{{ badboy[i] }}</p> 
-            {% endif %}
-        {% endfor %}
-        <form action="/about" method="post">
-            <input type="text" name="name" placeholder="Name">
-            <input type="email" name="email" placeholder="Email">
-            <input type="submit" value="Submit">
-        </form>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealHunter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+<body class="index">
+    <nav> 
+        <ul>
+            <li> <a class="aslika" href="{{ url_for('index') }}"><img src="{{ url_for('static',filename='Images/dealHunter2.png') }}" alt="DealHunter"></a></li>
+            <li class="navright"><a href="{{ url_for('avtonet') }}">Avtonet</a></li>
+            <li class="navright"><a href="{{ url_for('nepremicnine') }}">Nepremičnine</a></li>
+        </ul>
+    </nav>
+    <div class="welcome">
+        <h1>Welcome to DealHunter</h1>
+        <p class="random">Whaaat? You hate scrolling avtonet <span style="color:#000000; font-weight:600">all the time</span> and still missing on all of the <span style="color:#000000; font-weight:600">good deals?</span></p>
+        <p>Click on the <span style="color:#000000; font-weight:600">avtonet button</span> and <span style="color:#000000; font-weight:600">you're welcome</span>!</p>
+    </div>
+</body>
 </html>
+
+<!-- <img src="Images/Logo.png" alt="DealHunter"> -->

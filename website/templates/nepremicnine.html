@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <title>Nepremičnine</title>
+</head>
+<body class="nepremicnine">
+    <nav> 
+        <ul>
+            <li> <a class="aslika" href="{{ url_for('index') }}"><img src="{{ url_for('static',filename='Images/dealHunter2.png') }}" alt="DealHunter"></a></li>
+            <li class="navright"><a href="{{ url_for('avtonet') }}">Avtonet</a></li>
+            <li class="navright"><a href="{{ url_for('nepremicnine') }}">Nepremičnine</a></li>
+        </ul>
+    </nav>
+    <h1>Coming soon...</h2>
+</body>
+</html>

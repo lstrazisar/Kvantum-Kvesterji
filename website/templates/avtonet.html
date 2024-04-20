@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealHunter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+</head>
+<body class="avtonet">
+    <nav> 
+        <ul>
+            <li> <a class="aslika" href="{{ url_for('index') }}"><img src="{{ url_for('static',filename='Images/dealHunter2.png') }}" alt="DealHunter"></a></li>
+            <li class="navright"><a href="{{ url_for('avtonet') }}">Avtonet</a></li>
+            <li class="navright"><a href="{{ url_for('nepremicnine') }}">Nepremičnine</a></li>
+        </ul>
+    </nav>
+    <div class="preference_selection">
+        <form action="/about"  method="post" >
+        <h3>Please fill this form to get notified:</h3>
+        <!-- <label for="email">Email:</label> -->
+        <!-- <div class="email_request">
+            <input type="text" id="email" placeholder="Your email goes here">
+        </div> -->
+        <div class="email_input">
+            <input type="text" name="email" id="posta" placeholder="Please enter your email:">
+        </div>    
+        
+        <div class="dropdowns">
+            <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Car brand</button>
+            <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                {% for i in range(carbrands|length) %}
+                   <a>{{ carbrands[i] }}</a> 
+                {% endfor %}
+            </div>
+            </div>
+            <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Car model</button>
+            <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a href="#about">About</a>
+                <a href="#base">Base</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+                <a href="#custom">Custom</a>
+                <a href="#support">Support</a>
+                <a href="#tools">Tools</a>
+            </div>
+            </div>
+            <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Fuel type</button>
+            <div id="myDropdown" class="dropdown-content">
+                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <a href="#about">About</a>
+                <a href="#base">Base</a>
+                <a href="#blog">Blog</a>
+                <a href="#contact">Contact</a>
+                <a href="#custom">Custom</a>
+                <a href="#support">Support</a>
+                <a href="#tools">Tools</a>
+            </div>
+            </div>
+        </div>
+        <div class="kilometer_input">
+            <label for="kilometers_range">Prevoženi kilometri:</label>
+            <input type="number" name="kilometers_range_start" placeholder="from:">
+            <input type="number" name="kilometers_range_end" placeholder="to:">
+        </div>
+        <div class="price_input">
+            <label for="price_range">Cena:</label>
+            <input type="number" name="price_range_start" placeholder="from:">
+            <input type="number" name="price_range_end" placeholder="to:">
+        </div>
+        <div class="dropdown_no_search">
+            <button class="dropbtn">Frequency</button>
+            <div id="my_Dropdown" class="dropdown_content">
+                <a href="#immediately">Immediately</a>
+                <a href="#OncePerDay">Once per day</a>
+                <a href="#OncePerWeek">Once per week</a>
+            </div>
+        </div>
+        <div class="submit_button">
+            <input type="submit" value="Submit" onclick="checkInput()">
+        </div>
+    </form>
+    </div>
+    
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function checkInput() {
+  var myInput = document.getElementById("posta");
+  if (!(myInput && myInput.value)) {
+    alert("Please enter your email address!");
+  }
+}
+
+function filterFunction() {
+  const input = document.getElementById("myInput");
+  const filter = input.value.toUpperCase();
+  const div = document.getElementById("myDropdown");
+  const a = div.getElementsByTagName("a");
+  for (let i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script>
+</body>
+</html>
