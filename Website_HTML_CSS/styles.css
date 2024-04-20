@@ -6,7 +6,6 @@
         overflow: hidden;
         background: rgb(11,95,207);
         background: linear-gradient(0deg, rgba(22, 82, 160, 0.654) 0%, rgba(10, 49, 100, 0.712) 78%, rgba(34, 34, 185, 0.498) 100%);
-        
     }
 
     .navright a:hover {background-color: #142b65;}
@@ -44,7 +43,6 @@
         text-align: center;
     }
     nav  a img {
-        height: 100%;
         width: 160px;
         padding: 0;
         margin: 0px;
@@ -77,6 +75,10 @@ body.avtonet {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.avtonet {
+    height: 600px;
+    margin: 0;
+}
 .nepremicnine {
     height: 600px;
     color: white;
