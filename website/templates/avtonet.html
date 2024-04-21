@@ -17,14 +17,10 @@
     <div class="preference_selection">
         <form action="/about"  method="post" >
         <h3>Please fill this form to get notified:</h3>
-        <!-- <label for="email">Email:</label> -->
-        <!-- <div class="email_request">
-            <input type="text" id="email" placeholder="Your email goes here">
-        </div> -->
+        
         <div class="email_input">
             <input type="text" name="email" id="posta" placeholder="Please enter your email:">
-        </div>    
-    
+        </div>        
             <div class="dropdown">
                 <select name="carbrands" class="dropdown"  id="cars" >
                 {% for i in range(carbrands|length) %}
@@ -65,7 +61,7 @@
             </select>
         </div>
         <div class="submit_button">
-            <input type="submit" value="Submit" onclick="checkInput()">
+            <button class="button-54" role="button" onclick="checkInput()">SUBMIT</button>
         </div>
     </form>
     </div>
