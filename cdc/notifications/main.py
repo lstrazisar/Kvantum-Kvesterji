@@ -3,6 +3,7 @@ import psycopg2
 from decouple import config
 import requests
 import time
+from helper.insert_data_to_html import html_mail
 
 
 def notification_cdc(data: str):
@@ -13,8 +14,10 @@ def notification_cdc(data: str):
     cur = conn.cursor()
     if data:
         for change in data:
+            print(f'Handling change {change["kind"]}', flush=True)
             if change["kind"] == "insert":
                 to_be_searched = dict(zip(change["columnnames"], change["columnvalues"]))
+                print(to_be_searched, flush=True)
                 search = f"""
                         SELECT *
                         FROM ads
@@ -25,13 +28,19 @@ def notification_cdc(data: str):
                     """
                 cur.execute(search)
                 results = cur.fetchall()
-                print("results: \n")
-                print(results)
-                if results:
+
+                names = ("id", "ad_link", "image_link", "first_registry", "brand", "model", "gas_type", "kilometers", "price")
+
+                if type(results) == list:
                     try:
-                        body = ""
+                        data = list()
                         for result in results:
-                            body += f"Ad Link: {result[0]}\nImage Link: {result[1]}\nFirst Registry: {result[2]}\nBrand: {result[3]}\nModel: {result[4]}\nGas Type: {result[5]}\nKilometers: {result[6]}\nPrice: {result[7]}\n\n"
+                            print(names, flush=True)
+                            print(result, flush=True)
+                            data.append(dict(zip(names, result)))
+                        print(data, flush=True)
+                        body = html_mail(data)
+
                         email = to_be_searched["email"]
                         url = f'http://{config("LOCALHOST")}:8000/send_message'
                         payload = {
@@ -40,6 +49,7 @@ def notification_cdc(data: str):
                             "body": body
                         }
                         output = requests.post(url, json=payload)
+                        print(output.json(), flush=True)
 
                     except Exception as e:
                         print(f"Error occured while sending email: \n{e}", flush=True)

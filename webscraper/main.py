@@ -13,6 +13,7 @@ import csv
 import pandas
 from decouple import config
 import psycopg2
+from datetime import datetime
 
 
 class Oglas:
@@ -130,7 +131,7 @@ class AdScrapper:
             ime_znamke = naslov_oglasa[0].lower()
             ime_modela = naslov_oglasa[1].lower()
             i = 2
-            
+
             if ime_znamke not in self.znamke2modeli:
                 print("znamka ni v bazi")
             else:
@@ -151,6 +152,8 @@ class AdScrapper:
             prevozeni_kilometri = prevozeni_kilometri.rstrip("km")
    
             letnik_prve_registracije = oglas_tag.findChild(attrs={'w-25 d-none d-md-block pl-3'}).findNext().text.strip()
+            if letnik_prve_registracije == "NOVO": 
+                letnik_prve_registracije = datetime.now().year
 
             try:
                 cena = int(''.join(oglas_tag.findChild(attrs={'class': 'GO-Results-Price-TXT-Regular'}).text.strip(" €").split(".")))

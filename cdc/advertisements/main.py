@@ -3,6 +3,7 @@ import psycopg2
 from decouple import config
 import requests
 import time
+from helper.insert_data_to_html import html_mail
 
 
 def ads_cdc(data: str):
@@ -12,6 +13,7 @@ def ads_cdc(data: str):
     cur = conn.cursor()
     if data:
         for change in data:
+            print(f'Handling change {change["kind"]}', flush=True)
             if change["kind"] == "insert":
                 to_be_searched = dict(zip(change["columnnames"], change["columnvalues"]))
                 search = f"""
@@ -25,10 +27,7 @@ def ads_cdc(data: str):
                 cur.execute(search)
                 results = cur.fetchall()
 
-                body = f"""Ad Link: {to_be_searched["ad_link"]}\nImage Link: 
-                {to_be_searched["image_link"]}\nFirst Registry: {to_be_searched["first_registry"]}\nBrand: 
-                {to_be_searched["brand"]}\nModel: {to_be_searched["model"]}\nGas Type: {to_be_searched["gas_type"]}\n
-                Kilometers: {to_be_searched["kilometers"]}\n Price: {to_be_searched["price"]}\n\n"""
+                body = html_mail([to_be_searched])
 
                 if results:      
                     for result in results:

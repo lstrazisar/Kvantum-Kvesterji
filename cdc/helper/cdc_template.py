@@ -13,7 +13,7 @@ def process_change(message: psycopg2.extras.ReplicationMessage, data_handle_func
             if not data or "change" not in data or not data["change"]: return
             return data["change"]
         except Exception as e:
-            logging.warning(f'Error occured while parsing data from CDC: \n{e}')
+            print(f'Error occured while parsing data from CDC: \n{e}', flush=True)
             return
     
 
@@ -22,7 +22,7 @@ def process_change(message: psycopg2.extras.ReplicationMessage, data_handle_func
 
     # flushes the LSN (marks the data as processed)
     message.cursor.send_feedback(flush_lsn=message.data_start)
-    logging.info("LSN flushed")
+    print("LSN flushed", flush=True)
 
 
 def create_replication_connection(slot_name: str, data_handle_function: callable) -> None:
@@ -35,7 +35,7 @@ def create_replication_connection(slot_name: str, data_handle_function: callable
             port=config("DB_PORT"), connection_factory=LogicalReplicationConnection)
 
     cur: psycopg2.extras.ReplicationCursor = conn.cursor()
-    logging.info("Succesfully connected to Raw database")
+    print("Succesfully connected to Database", flush=True)
     # Creates a replication slot with wal2json if it already exists psycopg2.errors.DuplicateObject is raised
     try:
         cur.execute(f"""SELECT * FROM pg_create_logical_replication_slot('{slot_name}', 'wal2json') """)

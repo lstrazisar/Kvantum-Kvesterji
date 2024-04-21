@@ -20,7 +20,7 @@ class GmailApi:
     def send_message(self, sender, receiver, subject, body):
         def build_message(sender, receiver, subject, body):
             if type(receiver) == list: receiver = ", ".join(receiver)
-            message = MIMEText(body)
+            message = MIMEText(body, _subtype='html')
             message['to'], message['from'], message['subject']  = receiver, sender, subject
             return {'raw': urlsafe_b64encode(message.as_bytes()).decode()}
         

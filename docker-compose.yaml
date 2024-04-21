@@ -89,3 +89,23 @@ services:
       - LOCALHOST=${LOCALHOST}
     extra_hosts:
       - "host.docker.internal:host-gateway"
+
+  website:
+    image: dragonhack/website
+    container_name: website
+    restart: always
+    ports:
+      - 5000:5000
+    build:
+      context: .
+      dockerfile: ./website/docker/Dockerfile
+    environment:
+      - DB_ADMIN_PASSWORD=${DB_ADMIN_PASSWORD} # admin password
+      - DB_ADMIN_USERNAME=${DB_ADMIN_USERNAME} # admin user
+      - DB_USERNAME=${DB_USERNAME} # user
+      - DB_PASSWORD=${DB_PASSWORD} # password
+      - DB_DATABASE=${DB_DATABASE} # database name
+      - DB_PORT=${DB_PORT}
+      - LOCALHOST=${LOCALHOST}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
