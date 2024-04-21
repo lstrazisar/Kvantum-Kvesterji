@@ -24,44 +24,29 @@
         <div class="email_input">
             <input type="text" name="email" id="posta" placeholder="Please enter your email:">
         </div>    
-        
-        <div class="dropdowns">
+    
             <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Car brand</button>
-            <div id="myDropdown" class="dropdown-content">
-                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                <select name="carbrands" class="dropdown"  id="cars" >
                 {% for i in range(carbrands|length) %}
-                   <a>{{ carbrands[i] }}</a> 
+                    <option class="dropdown-content" value="{{carbrands[i]}}">{{ carbrands[i] }}</option> 
                 {% endfor %}
+                </select>
             </div>
+
+            <div class="dropdown">
+                <select name="models" class="dropdown"  id="cars" >
+                {% for i in range(models|length) %}
+                    <option class="dropdown-content" value="{{models[i]}}">{{ models[i] }}</option> 
+                {% endfor %}
+                </select>
             </div>
             <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Car model</button>
-            <div id="myDropdown" class="dropdown-content">
-                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                <a href="#about">About</a>
-                <a href="#base">Base</a>
-                <a href="#blog">Blog</a>
-                <a href="#contact">Contact</a>
-                <a href="#custom">Custom</a>
-                <a href="#support">Support</a>
-                <a href="#tools">Tools</a>
+                <select name="fuel_types" class="dropdown"  id="cars" >
+                {% for i in range(fuel_types|length) %}
+                    <option class="dropdown-content" value="{{fuel_types[i]}}">{{ fuel_types[i] }}</option> 
+                {% endfor %}
+                </select>
             </div>
-            </div>
-            <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Fuel type</button>
-            <div id="myDropdown" class="dropdown-content">
-                <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                <a href="#about">About</a>
-                <a href="#base">Base</a>
-                <a href="#blog">Blog</a>
-                <a href="#contact">Contact</a>
-                <a href="#custom">Custom</a>
-                <a href="#support">Support</a>
-                <a href="#tools">Tools</a>
-            </div>
-            </div>
-        </div>
         <div class="kilometer_input">
             <label for="kilometers_range">Prevoženi kilometri:</label>
             <input type="number" name="kilometers_range_start" placeholder="from:">
@@ -72,13 +57,12 @@
             <input type="number" name="price_range_start" placeholder="from:">
             <input type="number" name="price_range_end" placeholder="to:">
         </div>
-        <div class="dropdown_no_search">
-            <button class="dropbtn">Frequency</button>
-            <div id="my_Dropdown" class="dropdown_content">
-                <a href="#immediately">Immediately</a>
-                <a href="#OncePerDay">Once per day</a>
-                <a href="#OncePerWeek">Once per week</a>
-            </div>
+        <div class="dropdown">
+            <select name="frequency" class="dropdown"  id="cars" >
+            {% for i in range(frequency|length) %}
+                <option class="dropdown-content" value="{{frequency[i]}}">{{ frequency[i] }}</option> 
+            {% endfor %}
+            </select>
         </div>
         <div class="submit_button">
             <input type="submit" value="Submit" onclick="checkInput()">
