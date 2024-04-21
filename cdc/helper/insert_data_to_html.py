@@ -13,6 +13,7 @@ def html_mail(data_array):
     whole_mail = pref
     for i in range(len(data_array)):
         data = data_array[i]
+        print(data["image_link"], flush=True)
         sign_values = [data['image_link'], data['brand'] + ' ' +  data['model'], data['price'], data['kilometers'], data['first_registry'], data['gas_type'], data['ad_link']]
         temp_mail = ""
         with open ('helper/product.html', 'r') as file:

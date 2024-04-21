@@ -79,7 +79,7 @@ def avtonet():
         return redirect(url_for('index'))
 
     # show the form, it wasn't submitted
-    return render_template('avtonet.html', carbrands=brands, models=models, fuel_types=["","Bencin", "Dizel", "Elektrika", "Hibrid", "Plin"] , frequency=["Immediate", "Daily", "Weekly", "Monthly", "Yearly"])
+    return render_template('avtonet.html', carbrands=brands, models=models, fuel_types=["bencinski motor", "diesel motor", "elektro pogon", "hibridni pogon", "plin"] , frequency=["Immediate", "Daily", "Weekly", "Monthly", "Yearly"])
 
 
 @app.route('/nepremicnine', methods=['GET', 'POST'])
@@ -99,4 +99,3 @@ if __name__ == "__main__":
     time.sleep(10)
     brands, models = get_brands_and_models()
     app.run(host="0.0.0.0", debug=True)
-
