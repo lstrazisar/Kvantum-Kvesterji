@@ -28,7 +28,7 @@ def process_change(message: psycopg2.extras.ReplicationMessage, data_handle_func
 def create_replication_connection(slot_name: str, data_handle_function: callable) -> None:
     # creates a replication connection to postgres
     conn: psycopg2.extensions.connection = psycopg2.connect(
-            host="localhost",#config("LOCALHOST"),
+            host=config("LOCALHOST"),
             database=config("DB_DATABASE"),
             user=config("DB_ADMIN_USERNAME"),
             password=config("DB_ADMIN_PASSWORD"),

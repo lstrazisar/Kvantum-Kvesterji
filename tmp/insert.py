@@ -9,6 +9,17 @@ VALUES
 
 notifications_list = [
     {
+        "email": "papez.luka@gmail.com",
+        "brand": "Toyota",
+        "model": "Corolla",
+        "gas_type": "Petrol",
+        "from_kilometers": 10000,
+        "to_kilometers": 20000,
+        "from_price": 10000,
+        "to_price": 20000,
+        "frequency": "Weekly"
+    },
+    {
         "email": "test@example.com",
         "brand": "Toyota",
         "model": "Corolla",

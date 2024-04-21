@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: postgres/docker/Dockerfile
     ports:
-      - 5435:5432
+      - ${DB_PORT}:${DB_PORT_INTERNAL}
     volumes:
       - ./postgres/Data:/var/lib/postgresql/data
     environment:
@@ -31,5 +31,43 @@ services:
     ports:
       - 8000:8000 # gmail server port for authentication
       - 8080:8080
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  ad-cdc:
+    image: dragonhack/ad-cdc
+    container_name: ad-cdc
+    restart: always
+    build:
+      context: .
+      dockerfile: ./cdc/advertisements/docker/Dockerfile
+    environment:
+      - DB_ADMIN_PASSWORD=${DB_ADMIN_PASSWORD} # admin password
+      - DB_ADMIN_USERNAME=${DB_ADMIN_USERNAME} # admin user
+      - DB_USERNAME=${DB_USERNAME} # user
+      - DB_PASSWORD=${DB_PASSWORD} # password
+      - DB_DATABASE=${DB_DATABASE} # database name
+      - DB_PORT=${DB_PORT}
+      - LOCALHOST=${LOCALHOST}
+      - TABLES=${AD_TABLES}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  
+  noti-cdc:
+    image: dragonhack/noti-cdc
+    container_name: noti-cdc
+    restart: always
+    build:
+      context: .
+      dockerfile: ./cdc/notifications/docker/Dockerfile
+    environment:
+      - DB_ADMIN_PASSWORD=${DB_ADMIN_PASSWORD} # admin password
+      - DB_ADMIN_USERNAME=${DB_ADMIN_USERNAME} # admin user
+      - DB_USERNAME=${DB_USERNAME} # user
+      - DB_PASSWORD=${DB_PASSWORD} # password
+      - DB_DATABASE=${DB_DATABASE} # database name
+      - DB_PORT=${DB_PORT}
+      - LOCALHOST=${LOCALHOST}
+      - TABLES=${NOTIFI_TABLES}
     extra_hosts:
       - "host.docker.internal:host-gateway"
