@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, redirect
-
-<<<<<<< Updated upstream
-=======
+import csv
 def get_brands_and_models():
     brands=[]
     models=[]
@@ -14,7 +12,6 @@ def get_brands_and_models():
     brands=list(set(brands))
     return brands, models
 brands, models = get_brands_and_models()
->>>>>>> Stashed changes
 app = Flask(__name__)
 
 @app.route('/')
@@ -30,12 +27,9 @@ def about():
         kilometers_range_end = request.form['kilometers_range_end']
         price_range_start = request.form['price_range_start']
         price_range_end = request.form['price_range_end']
-<<<<<<< Updated upstream
-=======
         brand = request.form.get('brand')
         fuel_type = request.form.get('fuel_type')
         frequency = request.form.get('frequency')
->>>>>>> Stashed changes
         if kilometers_range_start == "":
             kilometers_range_start = 0
         if kilometers_range_end == "":
@@ -50,12 +44,9 @@ def about():
         print(kilometers_range_end)
         print(price_range_start)
         print(price_range_end)
-<<<<<<< Updated upstream
-=======
         print(brand)
         print(fuel_type)
         print(frequency)
->>>>>>> Stashed changes
         return redirect('avtonet')
     
     return render_template('avtonet.html')
@@ -70,11 +61,7 @@ def avtonet():
         return redirect(url_for('index'))
 
     # show the form, it wasn't submitted
-<<<<<<< Updated upstream
-    return render_template('avtonet.html', carbrands=["Audi", "Toyota", "Bmw", "Volkwagen"])
-=======
     return render_template('avtonet.html', carbrands=brands, models=models, fuel_types=["","Bencin", "Dizel", "Elektrika", "Hibrid", "Plin"] , frequency=["Immediate", "Daily", "Weekly", "Monthly", "Yearly"])
->>>>>>> Stashed changes
 @app.route('/nepremicnine', methods=['GET', 'POST'])
 def nepremicnine():
     if request.method == 'POST':
