@@ -21,8 +21,8 @@ def notification_cdc(data: str):
                 search = f"""
                         SELECT *
                         FROM ads
-                        WHERE brand = '{to_be_searched["brand"]}' AND model = '{to_be_searched["model"]}' 
-                        AND gas_type = '{to_be_searched["gas_type"]}' 
+                        WHERE brand = '{to_be_searched["brand"].lower()}' AND model = '{to_be_searched["model"].lower()}' 
+                        AND gas_type = '{to_be_searched["gas_type"].lower()}' 
                         AND kilometers BETWEEN {to_be_searched["from_kilometers"]} AND {to_be_searched["to_kilometers"]}
                         AND price BETWEEN {to_be_searched["from_price"]} AND {to_be_searched["to_price"]};
                     """

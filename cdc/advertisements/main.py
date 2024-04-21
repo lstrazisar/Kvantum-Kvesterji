@@ -15,12 +15,15 @@ def ads_cdc(data: str):
         for change in data:
             print(f'Handling change {change["kind"]}', flush=True)
             if change["kind"] == "insert":
+                print(change["columnnames"], change["columnvalues"])
                 to_be_searched = dict(zip(change["columnnames"], change["columnvalues"]))
+                print(to_be_searched, flush=True)
+
                 search = f"""
                         SELECT *
                         FROM notifications
-                        WHERE brand = '{to_be_searched["brand"]}' AND model = '{to_be_searched["model"]}' 
-                        AND gas_type = '{to_be_searched["gas_type"]}' 
+                        WHERE brand = '{to_be_searched["brand"].lower()}' AND model = '{to_be_searched["model"].lower()}' 
+                        AND gas_type = '{to_be_searched["gas_type"].lower()}' 
                         AND {to_be_searched["kilometers"]} BETWEEN from_kilometers AND to_kilometers
                         AND {to_be_searched["price"]} BETWEEN from_price AND to_price;
                     """
