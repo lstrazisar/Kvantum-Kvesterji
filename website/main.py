@@ -61,7 +61,7 @@ def avtonet():
         return redirect(url_for('index'))
 
     # show the form, it wasn't submitted
-    return render_template('avtonet.html', carbrands=brands, models=models, fuel_types=["","Bencin", "Dizel", "Elektrika", "Hibrid", "Plin"] , frequency=["Immediate", "Daily", "Weekly", "Monthly", "Yearly"])
+    return render_template('avtonet.html', carbrands=brands, models=models, fuel_types=["bencinski motor", "diesel motor", "Elektro pogon", "Hibridni pogon", "Plin"] , frequency=["Immediate", "Daily", "Weekly", "Monthly", "Yearly"])
 @app.route('/nepremicnine', methods=['GET', 'POST'])
 def nepremicnine():
     if request.method == 'POST':

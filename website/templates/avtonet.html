@@ -22,7 +22,8 @@
             <input type="text" name="email" id="posta" placeholder="Please enter your email:">
         </div>        
             <div class="dropdown">
-                <select name="carbrands" class="dropdown"  id="cars" >
+                <select required name="carbrands" class="dropdown"  id="cars" >
+                    <option value="" disabled selected >Brand:</option>
                 {% for i in range(carbrands|length) %}
                     <option class="dropdown-content" value="{{carbrands[i]}}">{{ carbrands[i] }}</option> 
                 {% endfor %}
@@ -30,17 +31,19 @@
             </div>
 
             <div class="dropdown">
-                <select name="models" class="dropdown"  id="cars" >
-                {% for i in range(models|length) %}
-                    <option class="dropdown-content" value="{{models[i]}}">{{ models[i] }}</option> 
-                {% endfor %}
+                <select required name="models" class="dropdown"  id="cars" >
+                    <option value="" disabled selected >Model:</option>
+                    {% for i in range(models|length) %}
+                        <option class="dropdown-content" value="{{models[i]}}">{{ models[i] }}</option> 
+                    {% endfor %}
                 </select>
             </div>
             <div class="dropdown">
-                <select name="fuel_types" class="dropdown"  id="cars" >
-                {% for i in range(fuel_types|length) %}
-                    <option class="dropdown-content" value="{{fuel_types[i]}}">{{ fuel_types[i] }}</option> 
-                {% endfor %}
+                <select required name="fuel_types" class="dropdown"  id="cars" >
+                    <option value="" disabled selected >Fuel:</option>
+                    {% for i in range(fuel_types|length) %}
+                        <option class="dropdown-content" value="{{fuel_types[i]}}">{{ fuel_types[i] }}</option> 
+                    {% endfor %}
                 </select>
             </div>
         <div class="kilometer_input">
@@ -54,10 +57,11 @@
             <input type="number" name="price_range_end" placeholder="to:">
         </div>
         <div class="dropdown">
-            <select name="frequency" class="dropdown"  id="cars" >
-            {% for i in range(frequency|length) %}
-                <option class="dropdown-content" value="{{frequency[i]}}">{{ frequency[i] }}</option> 
-            {% endfor %}
+            <select required name="frequency" class="dropdown"  id="cars" >
+                <option value="" disabled selected >Frequency:</option>
+                {% for i in range(frequency|length) %}
+                    <option class="dropdown-content" value="{{frequency[i]}}">{{ frequency[i] }}</option> 
+                {% endfor %}
             </select>
         </div>
         <div class="submit_button">
