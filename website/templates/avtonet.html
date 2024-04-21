@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DealHunter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+</head>
+<body class="avtonet">
+    <nav> 
+        <ul>
+            <li> <a class="aslika" href="{{ url_for('index') }}"><img src="{{ url_for('static',filename='Images/dealHunter2.png') }}" alt="DealHunter"></a></li>
+            <li class="navright"><a href="{{ url_for('avtonet') }}">Avtonet</a></li>
+            <li class="navright"><a href="{{ url_for('nepremicnine') }}">Nepremičnine</a></li>
+        </ul>
+    </nav>
+    <div class="preference_selection">
+        <form action="/about"  method="post" >
+            <h3>Please fill this form to get notified:</h3>
+
+            <div class="email_input">
+                <input type="text" name="email" id="posta" placeholder="Please enter your email:">
+            </div>    
+        
+                <div class="dropdown">
+                    <select name="carbrands" class="dropdown"  id="cars" >
+                    {% for i in range(carbrands|length) %}
+                        <option class="dropdown-content" value="{{carbrands[i]}}">{{ carbrands[i] }}</option> 
+                    {% endfor %}
+                    </select>
+                </div>
+
+                <div class="dropdown">
+                    <select name="models" class="dropdown"  id="cars" >
+                    {% for i in range(models|length) %}
+                        <option class="dropdown-content" value="{{models[i]}}">{{ models[i] }}</option> 
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="dropdown">
+                    <select name="fuel_types" class="dropdown"  id="cars" >
+                    {% for i in range(fuel_types|length) %}
+                        <option class="dropdown-content" value="{{fuel_types[i]}}">{{ fuel_types[i] }}</option> 
+                    {% endfor %}
+                    </select>
+                </div>
+            <div class="kilometer_input">
+                <label for="kilometers_range">Prevoženi kilometri:</label>
+                <input type="number" name="kilometers_range_start" placeholder="from:">
+                <input type="number" name="kilometers_range_end" placeholder="to:">
+            </div>
+            <div class="price_input">
+                <label for="price_range">Cena:</label>
+                <input type="number" name="price_range_start" placeholder="from:">
+                <input type="number" name="price_range_end" placeholder="to:">
+            </div>
+            <div class="dropdown">
+                <select name="frequency" class="dropdown"  id="cars" >
+                {% for i in range(frequency|length) %}
+                    <option class="dropdown-content" value="{{frequency[i]}}">{{ frequency[i] }}</option> 
+                {% endfor %}
+                </select>
+            </div>
+            <div class="submit_button">
+                <input type="submit" value="Submit" onclick="checkInput()">
+            </div>
+        </form>
+    </div>
+    
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function checkInput() {
+  var myInput = document.getElementById("posta");
+  if (!(myInput && myInput.value)) {
+    alert("Please enter your email address!");
+  }
+}
+
+function filterFunction() {
+  const input = document.getElementById("myInput");
+  const filter = input.value.toUpperCase();
+  const div = document.getElementById("myDropdown");
+  const a = div.getElementsByTagName("a");
+  for (let i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script>
+</body>
+</html>

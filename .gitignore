@@ -1,0 +1,4 @@
+.env
+postgres/Data
+insert_test.py
+.vscode
