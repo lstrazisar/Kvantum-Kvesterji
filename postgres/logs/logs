@@ -1,0 +1,26 @@
+CREATE TABLE notifications (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(100),
+    brand VARCHAR(100),
+    model VARCHAR(100),
+    gas_type VARCHAR(100),
+    from_kilometers INTEGER,
+    to_kilometers INTEGER,
+    from_price INTEGER,
+    to_price INTEGER,
+    frequency VARCHAR(100),
+    insert_time timestamp DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE ads (
+    id SERIAL PRIMARY KEY,
+    ad_link VARCHAR(100) UNIQUE,
+    image_link VARCHAR(100),
+    first_registry INT,
+    brand VARCHAR(100),
+    model VARCHAR(100),
+    gas_type VARCHAR(100),
+    kilometers INTEGER,
+    price INTEGER,
+    insert_time timestamp DEFAULT CURRENT_TIMESTAMP
+);
