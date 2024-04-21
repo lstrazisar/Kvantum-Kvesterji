@@ -34,6 +34,16 @@
                    <a>{{ carbrands[i] }}</a> 
                 {% endfor %}
             </div>
+<<<<<<< Updated upstream
+=======
+
+            <div class="dropdown">
+                <select name="models" class="dropdown"  id="cars" >
+                {% for i in range(models|length) %}
+                    <option class="dropdown-content" value="{{models[i]}}">{{ models[i] }}</option> 
+                {% endfor %}
+                </select>
+>>>>>>> Stashed changes
             </div>
             <div class="dropdown">
             <button onclick="myFunction()" class="dropbtn">Car model</button>
@@ -72,13 +82,12 @@
             <input type="number" name="price_range_start" placeholder="from:">
             <input type="number" name="price_range_end" placeholder="to:">
         </div>
-        <div class="dropdown_no_search">
-            <button class="dropbtn">Frequency</button>
-            <div id="my_Dropdown" class="dropdown_content">
-                <a href="#immediately">Immediately</a>
-                <a href="#OncePerDay">Once per day</a>
-                <a href="#OncePerWeek">Once per week</a>
-            </div>
+        <div class="dropdown">
+            <select name="frequency" class="dropdown"  id="cars" >
+            {% for i in range(frequency|length) %}
+                <option class="dropdown-content" value="{{frequency[i]}}">{{ frequency[i] }}</option> 
+            {% endfor %}
+            </select>
         </div>
         <div class="submit_button">
             <input type="submit" value="Submit" onclick="checkInput()">
