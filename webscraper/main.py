@@ -11,6 +11,8 @@ from selenium.webdriver.chrome.options import Options
 from zenrows import ZenRowsClient
 import csv
 import pandas
+from decouple import config
+import psycopg2
 
 
 class Oglas:
@@ -87,6 +89,7 @@ class ModelGetter:
             writer = csv.writer(file)
             writer.writerows(data)
             
+
 class AdScrapper:
     def __init__(self):
         self.baseurl = "https://www.avto.net/Ads/results_100.asp?oglasrubrika=1&prodajalec=2"
@@ -158,18 +161,6 @@ class AdScrapper:
             slika_div = oglas_tag.findChild(attrs={'class': 'col-auto p-3 GO-Results-Photo'})
             slika = slika_div.findChild().findChild().findChild().get('src')
             
-            
-            print("znamka:", ime_znamke)
-            print("model:", ime_modela)
-            print("prevozeni kilometri", int(prevozeni_kilometri))
-            print("cena", cena)
-            print("registracija", letnik_prve_registracije)
-            print("gorivo", gorivo)
-            print("link", absolute_link_name)
-            print("slika", slika)
-            print("\n")
-
-            
             oglas = Oglas(ime_znamke, ime_modela, letnik_prve_registracije, prevozeni_kilometri, absolute_link_name, slika, cena, gorivo)
             oglasi.append(oglas)
         
@@ -179,9 +170,12 @@ class AdScrapper:
 
 if __name__ == '__main__':
     """needed just the first time, to get pairs of brands and models from the website"""
-    #model_getter = ModelGetter()
-    #model_getter.extract_models()
-    
+
+    ads_sql = """
+        INSERT INTO ads (ad_link, image_link, first_registry, brand, model, gas_type, kilometers, price)
+        VALUES 
+            (%(ad_link)s, %(image_link)s, %(first_registry)s, %(brand)s, %(model)s, %(gas_type)s, %(kilometers)s, %(price)s) ON CONFLICT DO NOTHING
+        """
     ad_scrapper = AdScrapper()
     while True:
         oglasi = ad_scrapper.search_ads()
@@ -191,9 +185,13 @@ if __name__ == '__main__':
             data_dict = oglas.to_dict()
             data_dicts.append(data_dict)
         
-        
-        #tldr: dictionary za vsak oglas od 100 najnovejših, v vsakem je tisto, kar si napisal
-        print(data_dicts[0])
+        conn = psycopg2.connect(database=config("DB_DATABASE"), user=config("DB_ADMIN_USERNAME"), password=config("DB_ADMIN_PASSWORD"), 
+                        host=config("LOCALHOST"), port=config("DB_PORT"))
+        cur = conn.cursor()
+
+        cur.executemany(ads_sql, data_dicts)
+        conn.commit()
+
         time.sleep(60*10)
     
   
