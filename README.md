@@ -3,9 +3,6 @@
 </div>
 <br>
 
-<style type="text/css">
- .tab { margin-left: 40px; display: block;}
-</style>
 
 # Project description #
 <span style="color: #142b65; background-color: white; border-color: white; border-radius: 3px; padding-left: 3px; padding-right: 3px;">**dealHunter&reg;**</span> is a web service designated for people, who want to buy a certain product (currently we support cars from slovenian website ***Avto.net***), but don't want to spend <span style="color: #142b65; background-color: white; border-color: white; border-radius: 3px; padding-left: 3px; padding-right: 3px;">**to much time scrolling**</span> through endless pages of what is avaliable on the internet. ****dealHunter**** provides a service, that enables users to filter what kind of product they need and after that <span style="color: #142b65; background-color: white; border-color: white; border-radius: 3px; padding-left: 3px; padding-right: 3px;">**we take care of everything else.**</span> Our users can just relax and wait for an email notification, signaling them it's time to buy their dream car, or maybe a house, who knows of <span style="color: #142b65; background-color: white; border-color: white; border-radius: 3px; padding-left: 3px; padding-right: 3px;">**all the fields we could expand to.**</span>
@@ -29,3 +26,6 @@
 &nbsp;&nbsp;**&rarr;** <span style="color: white; background-color: RGBA(194, 193, 194, 60%); border-color: white; border-radius: 3px; padding-left: 6px; padding-right: 6px;">**Flask back-end:**</span>
 <br>
 <span class="tab">We chose to use Flusk as back-end language, for it's lightweight and suitability for our project. It allows easy integration with databases.</span>
+
+# Architecture
+<img src="architecture.png" alt="MarineGEO circle logo" style="width:100%; border: 2px solid #1e1e1e; border-radius: 10px; "/>
