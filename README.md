@@ -15,17 +15,25 @@
 
 &nbsp;&nbsp;**&rarr;** <span style="color: white; background-color: RGBA(194, 193, 194, 60%); border-color: white; border-radius: 3px; padding-left: 6px; padding-right: 6px;">**HTML&CSS user interface:**</span>
 <br>
-<span class="tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;****dealHunter's**** user interface is in a website form, written from stratch using _HTML_ and _CSS_. It has quite a retro style **&rarr;** you could sense that we come from FMF from afar. Webpage is divided into a welcome page, an empty _"Nepremičnine"_ page and a fully working _"Avtonet"_ page. The latter enables user to set parameters and then submit a subscription to our notification service</span> 
+<span class="tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;****dealHunter's**** user interface is in a website form, written from stratch using _HTML_ and _CSS_. It has quite a retro style **&rarr;** you could sense that we come from FMF from afar. Webpage is divided into a welcome page, an empty _"Nepremičnine"_ page and a fully working _"Avtonet"_ page. The latter enables user to set parameters for the notifications they wish to receive</span> 
 &nbsp;&nbsp;**&rarr;** <span style="color: white; background-color: RGBA(194, 193, 194, 60%); border-color: white; border-radius: 3px; padding-left: 6px; padding-right: 6px;">**PostgreSQL database:** </span>
 <br>
-<span class="tab">Your text goes here.</span>
+<span class="tab">PostgreSQL is the center of our operation. All data handling goes through it. It receives the data about car advertisements from the webscraper and the data about what notifications users would like. From there the data is handed on to our change detection service</span>
 &nbsp;&nbsp;**&rarr;** <span style="color: white; background-color: RGBA(194, 193, 194, 60%); border-color: white; border-radius: 3px; padding-left: 6px; padding-right: 6px;">**Python webscraper:**</span>
 <br>
 <span class="tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code file ****webscraper/main.py**** consists of 2 classes: ModelGetter scrapes all car brands and corresponding models using selenium library. It goes through all of the models for each brand by clicking on the dropdown menu. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AdScraper has a function _search_ads_ that uses Beautiful Soup library to scrape latest 100 ads and Zenrows library to avoid anti-bot detection. It stores relevant information for each advertisement on the website to PostgreSQL database.</span>
 &nbsp;&nbsp;**&rarr;** <span style="color: white; background-color: RGBA(194, 193, 194, 60%); border-color: white; border-radius: 3px; padding-left: 6px; padding-right: 6px;">**Flask back-end:**</span>
 <br>
-<span class="tab">We chose to use Flusk as back-end language, for it's lightweight and suitability for our project. It allows easy integration with databases.</span>
+<span class="tab">We chose to use Flask as our backend framework, for it's lightweight and suitable for our project. It allows easy integration with the database and our frontend interface.</span>
 
-# Architecture
+<span style="color: white; background-color: RGBA(194, 193, 194, 60%); border-color: white; border-radius: 3px; padding-left: 6px; padding-right: 6px;">**Change detection service(CDC):**</span>
+<br>
+<span class="tab">Change detection service is our main interface between the PostgreSQL database and the user. It is seperated into two instances one for each table (one for notification data and the other for advertisements). It is then forwarded to the mailing service which is implemented via FastAPI. </span>
+
+<span style="color: white; background-color: RGBA(194, 193, 194, 60%); border-color: white; border-radius: 3px; padding-left: 6px; padding-right: 6px;">**Docker:**</span>
+<br>
+<span class="tab">For ease of deployment and adjustability to different enviroments our entire project is implement in docker containers </span>
+
+# Architecture scheme
 <img src="architecture.png" alt="MarineGEO circle logo" style="width:100%; border: 2px solid #1e1e1e; border-radius: 10px; "/>
